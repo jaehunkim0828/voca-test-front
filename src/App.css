@@ -1,0 +1,234 @@
+#root {
+  height: 100vh;
+  background-color: #8FC0A9;
+}
+
+input:focus {
+  outline: none;
+}
+
+#container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 7.5rem;
+}
+
+#page-1 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+}
+
+#nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  width: 100%;
+  background: #8FC0A9;
+  height: 7.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#logo {
+  display: flex;
+  flex-direction: column;
+  background-color: #8FC0A9;
+  font-size: 3rem;
+  color: #FAF3DD;
+  font-weight: 600;
+  padding: 0 2rem;
+  border: none;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  height: 18rem;
+  border-radius: 5px;
+  min-width: 250px;
+}
+
+#Jbutton {
+  color: white;
+  background-color: #68B0AB;
+  height: 2.5rem;
+  outline: none;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.voca-input {
+  outline: none;
+  color: #07553B;
+  display: flex;
+  width: 100%;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+.input-style {
+  outline: none;
+  cursor: text;
+  border: none;
+  width: 100%;
+  background-color: #E5E5E5;
+  color: black;
+  height: 2rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 5px;
+}
+
+#voca-input {
+  display: flex;
+}
+
+#vocabulary {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1000px;
+  width: 700px;
+  height: 30rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 5px;
+  overflow-x: scroll;
+}
+
+#vocabulary-intro {
+  width: 100%;
+}
+
+.row-vocalist {
+  font-weight: 500;
+  display: flex;
+  width: 100%;
+}
+
+.row-testlist {
+  font-weight: 500;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.row-testlist-2 {
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.voca-remove-cover {
+  width: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.voca-remove {
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  width: 4rem;
+  height: 2rem;
+  background-color: #68B0AB;
+  color: white;
+}
+
+.voca-element {
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.voca-number-element {
+  min-width: 50px;
+}
+
+.driver {
+  min-width: 500px;
+  border: none;
+  border-bottom: 2px solid #E5E5E5;
+}
+
+.test-inputs {
+  border: none;
+  border-radius: 5px;
+  width: 80%;
+  height: 1.5rem;
+  padding: 0 5px;
+  /* border-bottom: #07553B solid 0.1rem; */
+  background-color: #E5E5E5;
+}
+
+.test-button {
+  outline: none;
+  color: white;
+  border: none;
+  background-color: #68B0AB;
+  font-size: 1.2rem;
+  font-weight: 600;
+  width: 8rem;
+  height: 2.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#finish-button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.finish-button {
+  outline: none;
+  color: #68B0AB;
+  border: none;
+  background-color: #FAF3DD;
+  font-weight: 600;
+  font-size: 1.2rem;
+  width: 8rem;
+  height: 2.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.test-button:hover {
+  background-color: #043122;
+}
+
+.test-container {
+  background-color: white;
+  padding: 2rem;
+  margin: 0 0 2rem 0;
+  max-width: 1500px;
+  width: 800px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 25rem;
+  overflow: scroll;
+}

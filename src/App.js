@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useBeforeunload } from "react-beforeunload";
 
 import './App.css';
-import feedbackImg from './images/feedback.png';
+import feedbackImg from './images/feedback2.png';
 
 function App() {
 
@@ -164,7 +164,7 @@ function App() {
         <button
           style={{
             border : "none",
-            background : "#FAF3DD",
+            background : "#8FC0A9",
             width : "5rem",
             height : "4rem",
             borderRadius : "5px",
@@ -255,7 +255,7 @@ function App() {
                 </button>
               </div>
             </div>
-            <div>
+            <div className="voca-container">
               <div style={{ marginBottom : "1rem"}}>
                 <span 
                   style={{ 
@@ -270,9 +270,12 @@ function App() {
               <div id="vocabulary">
                 <div id="vocabulary-intro">
                     <div className='row-vocalist'>
-                        <div className="voca-number-element">순서</div>
+                        {/* <div className="voca-number-element">순서</div> */}
                         <div className="voca-element">한글</div>
                         <div className="voca-element">영어</div>
+                        <div className="voca-remove-cover">
+                          <div className="voca-remove-emty"/>
+                        </div>
                       </div>
                       <hr className="driver" />
                 </div>
@@ -280,7 +283,7 @@ function App() {
                   vocalist.map((data, i) => (
                     <div style={{ width : "100%", marginTop : "1rem" }}>
                       <div className='row-vocalist'>
-                        <div className="voca-number-element">{i + 1}</div>
+                        {/* <div className="voca-number-element">{i + 1}</div> */}
                         <div className="voca-element" key={i}>{data}</div>
                         <div className="voca-element" key={i + 'en'}>{engVocalist[i]}</div>
                         <div className="voca-remove-cover">
@@ -346,7 +349,7 @@ function App() {
                   </div>
                   <div style={{ width : "100%", display : "flex", justifyContent : "space-between"}}>
                     <div style={{ fontSize : "1.2rem", fontWeight : "600", color : "#FAF3DD"}}>{score}</div>
-                    <div style={{ width : "18rem", display : "flex", justifyContent : "space-between"}}>
+                    <div className="finish-button-container">
                       <button 
                         className="finish-button"
                         onClick={startTest}

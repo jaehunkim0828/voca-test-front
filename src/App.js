@@ -17,13 +17,13 @@ function App() {
 
   const [vocalist, setVoca] = useState([]);
 
-  const [voca, changeVoca] = useState(undefined);
+  const [voca, changeVoca] = useState('');
 
   const [engText, clearEngText] = useState('');
 
   const [engVocalist, setEngVoca] = useState([]);
 
-  const [engVoca, changeEngVoca] = useState(undefined);
+  const [engVoca, changeEngVoca] = useState('');
 
   const [testVoca2, changeTest] = useState([]);
 
@@ -37,11 +37,15 @@ function App() {
 
   const addVoca = (e) => {
     e.preventDefault();
-    currentVoca = vocalist;
-    currentVoca.push(voca);
+    if (voca === '' || engVoca === '') {
+      return window.alert("단어를 입력해주세요.");
+    } else {
+      currentVoca = vocalist;
+      currentVoca.push(voca);
+      currentEngVoca = engVocalist;
+      currentEngVoca.push(engVoca);
+    }
     setVoca(currentVoca);
-    currentEngVoca = engVocalist;
-    currentEngVoca.push(engVoca);
     setEngVoca(currentEngVoca);
     clearText('');
     clearEngText('');

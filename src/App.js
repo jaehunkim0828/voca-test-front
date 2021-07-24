@@ -281,7 +281,7 @@ function App() {
                 </div>
                 {
                   vocalist.map((data, i) => (
-                    <div style={{ width : "100%", marginTop : "1rem" }}>
+                    <div style={{ width : "100%" }}>
                       <div className='row-vocalist'>
                         {/* <div className="voca-number-element">{i + 1}</div> */}
                         <div className="voca-element" key={i}>{data}</div>

@@ -56,6 +56,8 @@ function App() {
     var testVoca = vocalist.slice();
     var testEngVoca = engVocalist.slice();
     var currentIndex = testVoca.length, randomIndex;
+
+    //만약에 conclusion
     
     while (0 !== currentIndex) {
       // Pick a remaining element...
@@ -105,7 +107,7 @@ function App() {
     let count = 0;
     let score;
     const groupConclusion = [];
-    console.log(inputs);
+    
 
     for (const prop in inputs) {
       if ( inputs[prop] ===  matchInputs[prop] ) { 
@@ -127,12 +129,13 @@ function App() {
         groupConclusion.push(obj);
       }
     }
-    console.log(groupConclusion);
+    console.log(matchInputs);
 
     score = `${groupConclusion.length}개 중에 ${count}정답`;
     setConclusion(groupConclusion);
     setValue(false);
     setScore(score);
+    setMatchInputs({});
 
   }
 

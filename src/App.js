@@ -45,6 +45,8 @@ function App() {
     setEngVoca(currentEngVoca);
     clearText('');
     clearEngText('');
+    changeVoca('');
+    changeEngVoca('');
   }
 
   const refresh = () => {
@@ -399,6 +401,7 @@ function App() {
                               className="test-inputs" 
                               name={data} 
                               onChange={onChange}
+                              autocomplete='off'
                             />
                           </div>
                         </div>

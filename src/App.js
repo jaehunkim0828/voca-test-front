@@ -37,8 +37,15 @@ function App() {
 
   const addVoca = (e) => {
     e.preventDefault();
+    var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+    var pattern_eng = /[a-zA-Z]/;	
+
     if (voca === '' || engVoca === '') {
       return window.alert("단어를 입력해주세요.");
+    } else if (!pattern_kor.test(voca)) {
+      return window.alert("한글로 작성해주세요.")
+    } else if (!pattern_eng.test(engVoca)) {
+      return window.alert("영어로 작성해주세요.")
     } else {
       currentVoca = vocalist;
       currentVoca.push(voca);
@@ -137,7 +144,7 @@ function App() {
     }
     console.log(matchInputs);
 
-    score = `${groupConclusion.length}개 중에 ${count}정답`;
+    score = `${groupConclusion.length}개 중에 ${count}개 정답`;
     setConclusion(groupConclusion);
     setValue(false);
     setScore(score);
@@ -274,7 +281,7 @@ function App() {
                 >
                   My WordBook
                 </span>
-                <span style={{ fontSize : "0.8rem", color : "#FAF3DD" }}>내가 기록한 단어</span>
+                <span style={{ fontSize : "0.8rem", color : "#FAF3DD" }}> 내가 기록한 단어</span>
               </div>
               <div id="vocabulary">
                 <div id="vocabulary-intro">
@@ -325,7 +332,7 @@ function App() {
                   >
                     Test Result
                   </span>
-                  <span style={{ fontSize : "0.8rem", color : "#FAF3DD" }}>시험 결과</span>
+                  <span style={{ fontSize : "0.8rem", color : "#FAF3DD" }}> 시험 결과</span>
                 </div>
                   <div className="test-container">
                     <div style={{ width : "90%" }}>
@@ -385,7 +392,7 @@ function App() {
                   >
                     Test Word
                   </span>
-                  <span style={{ fontSize : "0.8rem", color : "#FAF3DD" }}>단어시험</span>
+                  <span style={{ fontSize : "0.8rem", color : "#FAF3DD" }}> 단어시험</span>
                 </div>
                 <div className="test-container">
                   <div style={{ width : "90%" }}>

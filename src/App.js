@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useBeforeunload } from "react-beforeunload";
 
 import './App.css';
@@ -8,7 +8,8 @@ function App() {
 
   let currentVoca;
   let currentEngVoca;
-  
+  const inputRef = useRef();
+
   const [value, setValue] = useState(true);
 
   const [testValue, setTestValue] = useState(false);
@@ -37,6 +38,7 @@ function App() {
 
   const addVoca = (e) => {
     e.preventDefault();
+    inputRef.current.focus();
     var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
     var pattern_eng = /[a-zA-Z]/;	
 
@@ -223,6 +225,8 @@ function App() {
                   <input
                     placeholder="한글 입력"
                     className="input-style"
+                    name="kor-input"
+                    ref={inputRef}
                     value={text}
                     onChange={(e) => {
                       changeVoca(e.target.value);
@@ -234,6 +238,7 @@ function App() {
                   <input
                     placeholder="영어 입력"
                     className="input-style"
+                    name="eng-input"
                     value={engText}
                     onChange={(e) => {
                       changeEngVoca(e.target.value);

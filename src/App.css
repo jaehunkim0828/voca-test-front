@@ -76,6 +76,10 @@
   }
 }
 
+html {
+  background-color: #8FC0A9;
+}
+
 #root {
   height: 100vh;
   background-color: #8FC0A9;

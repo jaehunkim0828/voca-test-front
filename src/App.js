@@ -13,6 +13,8 @@ function App() {
   const [value, setValue] = useState(true);
 
   const [testValue, setTestValue] = useState(false);
+  
+  const [language, setLanguage] = useState('');
 
   const [text, clearText] = useState('');
 
@@ -66,11 +68,11 @@ function App() {
     window.location.reload();
   }
 
-  const startTest = () => {
+  const startTest = (lang, question, answer) => {
 
-    var testVoca = vocalist.slice();
-    var testEngVoca = engVocalist.slice();
-    var currentIndex = testVoca.length, randomIndex;
+    var testQ = question.slice();
+    var testA = answer.slice();
+    var currentIndex = testQ.length, randomIndex;
 
     //만약에 conclusion
     
@@ -79,19 +81,20 @@ function App() {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
       // And swap it with the current element.
-      [testVoca[currentIndex], testVoca[randomIndex]] = [
-      testVoca[randomIndex], testVoca[currentIndex]];
-      [testEngVoca[currentIndex], testEngVoca[randomIndex]] = [
-      testEngVoca[randomIndex], testEngVoca[currentIndex]];
+      [testQ[currentIndex], testQ[randomIndex]] = [
+      testQ[randomIndex], testQ[currentIndex]];
+      [testA[currentIndex], testA[randomIndex]] = [
+      testA[randomIndex], testA[currentIndex]];
     }
-    changeTest(testVoca);
+    changeTest(testQ);
     var testObj = {};
-    for (let i = 0; i < testVoca.length; i += 1) {
+    for (let i = 0; i < testQ.length; i += 1) {
       testObj = {
         ...testObj,
-        [testVoca[i]]: testEngVoca[i],
+        [testQ[i]]: testA[i],
       }
     }
+    setLanguage(lang);
     setInputs(testObj);
     setTestValue(true);
     setValue(true);
@@ -257,7 +260,7 @@ function App() {
                 style={{
                   width : "100%",
                   background : "white",
-                  height : "7rem",
+                  height : "9rem",
                   borderRadius : "5px",
                   display : "flex",
                   flexDirection : "column",
@@ -266,14 +269,33 @@ function App() {
                   justifyContent : "space-around"
                 }}
               >
-                <div style={{ fontSize : "1.2rem", fontWeight : "600" }}>단어 시험 보기</div>
-                <div style={{ fontSize : "0.8rem" }}>열심히 공부했나요? 영단어 테스트 보기</div>
-                <button
-                  className="test-button"
-                  onClick={startTest}
+                <div
+                  style={{
+                    width : "100%",
+                    height: "3rem",                                      
+                    display : "flex",
+                    flexDirection : "column",                  
+                    alignItems : "center",
+                    justifyContent: "space-between",
+                  }}
                 >
-                  시험 보기
-                </button>
+                  <div style={{ fontSize : "1.2rem", fontWeight : "600" }}>단어 시험 보기</div>
+                  <div style={{ fontSize : "0.8rem" }}>열심히 공부했나요? 영단어 테스트 보기</div>
+                </div>
+                <div style={{ width : "80%", display : "flex", justifyContent : "space-around"}}>
+                  <button
+                    className="test-button"
+                    onClick={() => startTest('kor', vocalist, engVocalist)}
+                  >
+                    한글시험
+                  </button>
+                  <button
+                    className="test-button"
+                    onClick={() => startTest('eng', engVocalist, vocalist)}
+                  >
+                    영어시험
+                  </button>
+                </div>
               </div>
             </div>
             <div className="voca-container">
@@ -324,111 +346,225 @@ function App() {
             </div>
           </div>
             :
-          <div>
+          <div> 
             {
-              !value ?
+              language === 'kor' ?
               <div>
-                <div style={{ marginBottom : "1rem"}}>
-                  <span 
-                    style={{ 
-                      fontSize : "1.5rem",
-                      color : "#FAF3DD"
-                    }}
-                  >
-                    Test Result
-                  </span>
-                  <span style={{ fontSize : "0.8rem", color : "#FAF3DD" }}> 시험 결과</span>
-                </div>
-                  <div className="test-container">
-                    <div style={{ width : "90%" }}>
-                        <div className='row-testlist-2'>
-                            <div className="voca-element">입력한 한글</div>
-                            <div className="voca-element">입력한 영어</div>
-                            <div className="voca-element">결과</div>
-                          </div>
-                          <hr className="driver" />
+                {
+                  !value ?
+                  <div>
+                    <div style={{ marginBottom : "1rem"}}>
+                      <span 
+                        style={{ 
+                          fontSize : "1.5rem",
+                          color : "#FAF3DD"
+                        }}
+                      >
+                        Test Result
+                      </span>
+                      <span style={{ fontSize : "0.8rem", color : "#FAF3DD" }}> 시험 결과</span>
                     </div>
-                    {
-                      conclusion.map((data, i) => (
-                        <div style={{ width : "90%"}}>
-                          <div className='row-testlist-2'>
-                            <div className="voca-element">{data.question}</div>
-                            <div className="voca-element">{data.answer}</div>
-                            <div 
-                              className="voca-element" 
-                              style={{ 
-                                color : data.value === "정답" ? "#39A2DB" : "#F55C47"
-                              }}
-                            >
-                              {data.value}
+                      <div className="test-container">
+                        <div style={{ width : "90%" }}>
+                            <div className='row-testlist-2'>
+                                <div className="voca-element">입력한 한글</div>
+                                <div className="voca-element">입력한 영어</div>
+                                <div className="voca-element">결과</div>
+                              </div>
+                              <hr className="driver" />
+                        </div>
+                        {
+                          conclusion.map((data, i) => (
+                            <div style={{ width : "90%"}}>
+                              <div className='row-testlist-2'>
+                                <div className="voca-element">{data.question}</div>
+                                <div className="voca-element">{data.answer}</div>
+                                <div 
+                                  className="voca-element" 
+                                  style={{ 
+                                    color : data.value === "정답" ? "#39A2DB" : "#F55C47"
+                                  }}
+                                >
+                                  {data.value}
+                                </div>
+                              </div>
+                                <hr className="driver" />
                             </div>
-                          </div>
-                            <hr className="driver" />
+                          ))
+                        }
+                      </div>
+                      <div style={{ width : "100%", display : "flex", justifyContent : "space-between"}}>
+                        <div style={{ fontSize : "1.2rem", fontWeight : "600", color : "#FAF3DD"}}>{score}</div>
+                        <div className="finish-button-container">
+                          <button 
+                            className="finish-button"
+                            onClick={() => startTest('kor', vocalist, engVocalist)}
+                          >
+                            재시험 보기
+                          </button>
+                          <button
+                            className="finish-button"
+                            onClick={goMain}
+                          >
+                            돌아가기
+                          </button>
                         </div>
-                      ))
-                    }
-                  </div>
-                  <div style={{ width : "100%", display : "flex", justifyContent : "space-between"}}>
-                    <div style={{ fontSize : "1.2rem", fontWeight : "600", color : "#FAF3DD"}}>{score}</div>
-                    <div className="finish-button-container">
-                      <button 
-                        className="finish-button"
-                        onClick={startTest}
+                      </div>
+                    </div>
+                      :
+                    <div>
+                    <div style={{ marginBottom : "1rem"}}>
+                      <span 
+                        style={{ 
+                          fontSize : "1.5rem",
+                          color : "#FAF3DD"
+                        }}
                       >
-                        재시험 보기
-                      </button>
-                      <button
-                        className="finish-button"
-                        onClick={goMain}
-                      >
-                        돌아가기
-                      </button>
+                        Test Word
+                      </span>
+                      <span style={{ fontSize : "0.8rem", color : "#FAF3DD" }}> 단어시험</span>
+                    </div>
+                    <div className="test-container">
+                      <div style={{ width : "90%" }}>
+                          <div className='row-testlist'>
+                              <div className="voca-element">한글</div>
+                              <div className="voca-element">영어</div>
+                            </div>
+                            <hr className="driver" />
+                      </div>
+                      {
+                        testVoca2.map((data, i) => (
+                          <div style={{ width : "90%" }}>
+                            <div className='row-testlist'>
+                              <div className="voca-element" key={i}>{data}</div>
+                              <div className="voca-element">
+                                <input 
+                                  className="test-inputs" 
+                                  name={data} 
+                                  onChange={onChange}
+                                  autocomplete='off'
+                                />
+                              </div>
+                            </div>
+                              <hr className="driver" />
+                          </div>
+                        ))
+                      }
+                    </div>
+                    <div id="finish-button-container">
+                      <button className="finish-button" onClick= {finishTest}>시험종료</button>
                     </div>
                   </div>
-                </div>
-                  :
-                <div>
-                <div style={{ marginBottom : "1rem"}}>
-                  <span 
-                    style={{ 
-                      fontSize : "1.5rem",
-                      color : "#FAF3DD"
-                    }}
-                  >
-                    Test Word
-                  </span>
-                  <span style={{ fontSize : "0.8rem", color : "#FAF3DD" }}> 단어시험</span>
-                </div>
-                <div className="test-container">
-                  <div style={{ width : "90%" }}>
-                      <div className='row-testlist'>
-                          <div className="voca-element">한글</div>
-                          <div className="voca-element">영어</div>
+                }
+              </div>
+                :
+              <div>
+                {
+                  !value ?
+                  <div>
+                    <div style={{ marginBottom : "1rem"}}>
+                      <span 
+                        style={{ 
+                          fontSize : "1.5rem",
+                          color : "#FAF3DD"
+                        }}
+                      >
+                        Test Result
+                      </span>
+                      <span style={{ fontSize : "0.8rem", color : "#FAF3DD" }}> 시험 결과</span>
+                    </div>
+                      <div className="test-container">
+                        <div style={{ width : "90%" }}>
+                            <div className='row-testlist-2'>
+                                <div className="voca-element">입력한 영어</div>
+                                <div className="voca-element">입력한 한글</div>
+                                <div className="voca-element">결과</div>
+                              </div>
+                              <hr className="driver" />
                         </div>
-                        <hr className="driver" />
-                  </div>
-                  {
-                    testVoca2.map((data, i) => (
-                      <div style={{ width : "90%" }}>
-                        <div className='row-testlist'>
-                          <div className="voca-element" key={i}>{data}</div>
-                          <div className="voca-element">
-                            <input 
-                              className="test-inputs" 
-                              name={data} 
-                              onChange={onChange}
-                              autocomplete='off'
-                            />
-                          </div>
-                        </div>
-                          <hr className="driver" />
+                        {
+                          conclusion.map((data, i) => (
+                            <div style={{ width : "90%"}}>
+                              <div className='row-testlist-2'>
+                                <div className="voca-element">{data.question}</div>
+                                <div className="voca-element">{data.answer}</div>
+                                <div 
+                                  className="voca-element" 
+                                  style={{ 
+                                    color : data.value === "정답" ? "#39A2DB" : "#F55C47"
+                                  }}
+                                >
+                                  {data.value}
+                                </div>
+                              </div>
+                                <hr className="driver" />
+                            </div>
+                          ))
+                        }
                       </div>
-                    ))
-                  }
-                </div>
-                <div id="finish-button-container">
-                  <button className="finish-button" onClick= {finishTest}>시험종료</button>
-                </div>
+                      <div style={{ width : "100%", display : "flex", justifyContent : "space-between"}}>
+                        <div style={{ fontSize : "1.2rem", fontWeight : "600", color : "#FAF3DD"}}>{score}</div>
+                        <div className="finish-button-container">
+                          <button 
+                            className="finish-button"
+                            onClick={() => startTest('kor', vocalist, engVocalist)}
+                          >
+                            재시험 보기
+                          </button>
+                          <button
+                            className="finish-button"
+                            onClick={goMain}
+                          >
+                            돌아가기
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                      :
+                    <div>
+                    <div style={{ marginBottom : "1rem"}}>
+                      <span 
+                        style={{ 
+                          fontSize : "1.5rem",
+                          color : "#FAF3DD"
+                        }}
+                      >
+                        Test Word
+                      </span>
+                      <span style={{ fontSize : "0.8rem", color : "#FAF3DD" }}> 단어시험</span>
+                    </div>
+                    <div className="test-container">
+                      <div style={{ width : "90%" }}>
+                          <div className='row-testlist'>
+                              <div className="voca-element">영어</div>
+                              <div className="voca-element">한글</div>
+                            </div>
+                            <hr className="driver" />
+                      </div>
+                      {
+                        testVoca2.map((data, i) => (
+                          <div style={{ width : "90%" }}>
+                            <div className='row-testlist'>
+                              <div className="voca-element" key={i}>{data}</div>
+                              <div className="voca-element">
+                                <input 
+                                  className="test-inputs" 
+                                  name={data} 
+                                  onChange={onChange}
+                                  autocomplete='off'
+                                />
+                              </div>
+                            </div>
+                              <hr className="driver" />
+                          </div>
+                        ))
+                      }
+                    </div>
+                    <div id="finish-button-container">
+                      <button className="finish-button" onClick= {finishTest}>시험종료</button>
+                    </div>
+                  </div>
+                }
               </div>
             }
           </div>

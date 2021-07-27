@@ -186,7 +186,7 @@ form {
   flex-direction: column;
   align-items: center;
   max-width: 1000px;
-  height: 30rem;
+  height: 32rem;
   padding: 2rem;
   margin-bottom: 2rem;
   border-radius: 5px;
@@ -275,7 +275,7 @@ form {
   background-color: #68B0AB;
   font-size: 1.2rem;
   font-weight: 600;
-  width: 8rem;
+  width: 6rem;
   height: 2.5rem;
   cursor: pointer;
   border-radius: 5px;

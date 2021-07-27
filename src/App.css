@@ -35,6 +35,10 @@
     display: flex;
     justify-content: space-between;
   }
+
+  .test-button {
+    font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 500px) {
@@ -73,6 +77,10 @@
     width: 13rem;
     display: flex;
     justify-content: space-between;
+  }
+
+  .test-button {
+    font-size: 0.9rem;
   }
 }
 
@@ -273,7 +281,6 @@ form {
   color: white;
   border: none;
   background-color: #68B0AB;
-  font-size: 1.2rem;
   font-weight: 600;
   width: 6rem;
   height: 2.5rem;

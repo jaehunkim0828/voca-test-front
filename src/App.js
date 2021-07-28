@@ -507,7 +507,7 @@ function App() {
                         <div className="finish-button-container">
                           <button 
                             className="finish-button"
-                            onClick={() => startTest('kor', vocalist, engVocalist)}
+                            onClick={() => startTest('Eng', engVocalist, vocalist)}
                           >
                             재시험 보기
                           </button>

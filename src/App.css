@@ -39,6 +39,48 @@
   .test-button {
     font-size: 1.2rem;
   }
+
+  .logout-container {
+    margin: 0 6rem 0 0;
+  }
+
+  #regiser-container {
+    width: 22rem;
+  }
+
+  .register-inputs {
+    width: 11rem;
+  }
+
+  #register-title-context {
+    font-size: 0.7rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-login {
+    border: none;
+    background: rgb(143, 192, 169);
+    margin: 0px 2rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 400px;
+    justify-content: space-around;
+  }
+
+  #login-container {
+    margin-top: 7.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0 0 0;
+  }
+  #register-container {
+    width: 20rem;
+  }
 }
 
 @media (max-width: 500px) {
@@ -82,14 +124,58 @@
   .test-button {
     font-size: 0.9rem;
   }
+
+  .logout-container {
+    margin: 0 3rem 0 0;
+  }
+
+  #register-container {
+    width: 16rem;
+  }
+
+  .register-text-name {
+    font-size: 0.8rem;
+  }
+
+  .register-inputs {
+    width: 8rem;
+  }
+
+  #register-title-context {
+    font-size: 0.6rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-login {
+    border: none;
+    background: rgb(143, 192, 169);
+    margin: 1rem 2rem 0 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    width: 400px;
+    justify-content: space-around;
+    gap: 1rem;
+  }
+
+  #login-container {
+    margin-top: 9rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0 0 0;
+  }
 }
 
 html {
   background-color: #8FC0A9;
+  height: 100vh;
 }
 
 #root {
-  height: 100vh;
   background-color: #8FC0A9;
 }
 
@@ -117,11 +203,10 @@ input:focus {
   top: 0;
   left: 0;
   right: 0;
-
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   background: #8FC0A9;
-  height: 7.5rem;
   align-items: center;
   justify-content: space-between;
 }
@@ -137,7 +222,7 @@ input:focus {
   cursor: pointer;
 }
 
-form {
+#add-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -320,4 +405,83 @@ form {
   align-items: center;
   height: 25rem;
   overflow: scroll;
+}
+
+/* firstpage */
+
+#register-container {
+  background-color: white;
+  height: 22rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+#register-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 6rem;
+}
+
+#register-text {
+  width: 100%;
+  height: 7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem;
+}
+
+.register-text-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.register-inputs {
+  height: 2.7rem;
+  background-color: #e5e5e5;
+  border: none;
+  cursor: text;
+  border-radius: 5px;
+  padding: 0 1rem;
+}
+
+#register-button {
+  width: 13rem;
+  height: 3rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.2rem;
+  background-color: #68B0AB;
+  font-weight: 700;
+}
+
+.login-inputs {
+  width: 6rem;
+  height: 2.3rem;
+  background-color: #E5E5E5;
+  border: none;
+  border-radius: 3px;
+  cursor: text;
+  padding: 0 1rem;
+}
+
+.login-button {
+  width: 4rem;
+  height: 2.3rem;
+  background-color: #FAF3DD;
+  border: none;
+  border-radius: 3px;
+  color: #68B0AB;
+  font-weight: 800;
+  cursor: pointer;
 }

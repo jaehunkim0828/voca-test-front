@@ -4,7 +4,7 @@ import { useAlert } from "react-alert";
 
 function Firstpage() {
 
-  let url = 'http://localhost:5000/user';
+  let url = 'http://3.34.140.114:5000/user';
 
   const alert = useAlert();
   
@@ -30,7 +30,11 @@ function Firstpage() {
       clearCode('');
       clearPassword('');
       axios.post(url, register)
-      alert.success("만들기 성공");
+        .then(data => {
+          console.log(data);
+          alert.success("만들기 성공");
+        })
+        .catch(err => alert.error('이 단어장은 이미 생성되어 있는 단어장입니다.'))
     }
   }
 
@@ -79,6 +83,8 @@ function Firstpage() {
                   onChange(e);
                   clearCode(e.target.value);
                 }}
+                style={{imeMode : 'active'}}
+                type='text'
               />
             </div>
             <div className="register-text-row">

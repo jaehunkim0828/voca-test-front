@@ -8,7 +8,7 @@ function Main(props) {
 
   let currentVoca;
   let currentEngVoca;
-  let url = 'http://127.0.0.1:5000/voca';
+  let url = 'http://3.34.140.114:5000/voca';
 
   const { cookies } = props;
 
@@ -71,7 +71,6 @@ function Main(props) {
     }
     const addResult = vocaObj.slice();
     addResult.push(obj);
-    console.log(addResult);
 
     setVocaObj(addResult);
     setVoca(currentVoca);
@@ -134,7 +133,19 @@ function Main(props) {
     if (window.confirm('정말 삭제하시겠습니까?')) {
       setVoca(vocalist.filter(voca => voca !== data));
       setEngVoca(engVocalist.filter(voca => voca !== engVocalist[i]));
+      const currentObj = vocaObj.slice();
+      currentObj.splice(i, 1);
+      axios.delete(url,
+        { data: {
+          voca: data['voca'],
+          engvoca: data['engvoca'],
+          userId: cookies.get('user'),
+          } 
+        }
+      )
+        .then(data => setVocaObj(currentObj))
       return;
+      
     } else {
       return;
     }  

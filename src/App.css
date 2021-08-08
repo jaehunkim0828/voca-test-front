@@ -161,7 +161,7 @@
   }
 
   #login-container {
-    margin-top: 9rem;
+    margin-top: 10rem;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -209,6 +209,7 @@ input:focus {
   background: #8FC0A9;
   align-items: center;
   justify-content: space-between;
+  padding-top: 1rem;
 }
 
 #logo {

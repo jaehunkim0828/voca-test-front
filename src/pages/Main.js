@@ -3,6 +3,8 @@ import { useBeforeunload } from "react-beforeunload";
 import axios from 'axios';
 import { withCookies } from 'react-cookie';
 
+import Timer from '../components/Timer.js';
+
 
 function Main(props) {
 
@@ -43,6 +45,10 @@ function Main(props) {
   const [score, setScore] = useState('');
 
   const [conclusion, setConclusion] = useState([]); 
+
+  const [mm, changeMin] = useState(5);
+
+  const [time, setTime] = useState(0);
 
   const addVoca = (e) => {
     e.preventDefault();
@@ -190,6 +196,25 @@ function Main(props) {
   const goMain = () => {
     setTestValue(false);
     setValue(true);
+  }
+
+  const timer = () => {
+    setValue(false);
+  }
+
+  const selectTime = (e) => {
+    if (parseInt(time)) {
+      e.preventDefault();
+      changeMin(time);
+    } else {
+      window.alert('숫자를 입력해주세요.');
+    }
+  }
+
+  const onchangeTime = (e) => {
+    const { value } = e.target; 
+    console.log(value);
+    setTime(value);
   }
 
   useEffect(() => {
@@ -349,6 +374,16 @@ function Main(props) {
                   ))
                 }
               </div>
+              <form
+                onSubmit={selectTime}
+              >
+                시간정하기
+                <input
+                  onChange={onchangeTime}
+                />
+                <button type='submit'>확인</button>
+                <div>{mm}</div>
+              </form>
             </div>
           </div>
             :
@@ -460,6 +495,7 @@ function Main(props) {
                     <div id="finish-button-container">
                       <button className="finish-button" onClick= {finishTest}>시험종료</button>
                     </div>
+                    <Timer mm={mm} timer={timer}/>
                   </div>
                 }
               </div>
@@ -569,6 +605,7 @@ function Main(props) {
                     <div id="finish-button-container">
                       <button className="finish-button" onClick= {finishTest}>시험종료</button>
                     </div>
+                    <Timer mm={mm} timer={timer}/>
                   </div>
                 }
               </div>

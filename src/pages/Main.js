@@ -439,10 +439,10 @@ function Main(props) {
                             <hr className="driver" />
                       </div>
                       {
-                        testVoca2.map((data, i) => (
+                        vocaObj.map((data, i) => (
                           <div style={{ width : "90%" }}>
                             <div className='row-testlist'>
-                              <div className="voca-element" key={i}>{data}</div>
+                              <div className="voca-element" key={i}>{data['voca']}</div>
                               <div className="voca-element">
                                 <input 
                                   className="test-inputs" 
@@ -548,10 +548,10 @@ function Main(props) {
                             <hr className="driver" />
                       </div>
                       {
-                        testVoca2.map((data, i) => (
+                        vocaObj.map((data, i) => (
                           <div style={{ width : "90%" }}>
                             <div className='row-testlist'>
-                              <div className="voca-element" key={i}>{data}</div>
+                              <div className="voca-element" key={i}>{data['engvoca']}</div>
                               <div className="voca-element">
                                 <input 
                                   className="test-inputs" 

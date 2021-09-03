@@ -8,7 +8,7 @@ import './App.css';
 
 function App(props) {
 
-  let url = 'http://3.34.140.114:5000/login';
+  let url = 'http://localhost:5000/login';
 
   const [login, setLogin] = useState("실패");
 

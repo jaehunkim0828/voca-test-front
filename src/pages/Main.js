@@ -8,7 +8,7 @@ function Main(props) {
 
   let currentVoca;
   let currentEngVoca;
-  let url = 'http://3.34.140.114:5000/voca';
+  let url = 'http://localhost:5000/voca';
 
   const { cookies } = props;
 
@@ -120,7 +120,7 @@ function Main(props) {
   }
   
   const onChange = (e) => {
-    const { value, name } = e.target; 
+    const { value, name } = e.target;
     setMatchInputs({
       ...matchInputs, 
       [name]: value 
@@ -160,17 +160,13 @@ function Main(props) {
 
     for (const prop in inputs) {
       if ( inputs[prop] ===  matchInputs[prop] ) { 
-        // conclusionAnswer = `${prop} (${matchInputs[prop]}) 정답`;
-        // groupConclusion.push(conclusionAnswer);
         const obj = {};
         obj.question = prop;
         obj.answer = matchInputs[prop];
         obj.value = "정답";
         groupConclusion.push(obj);
         count += 1;
-      } else {       
-        // conclusionAnswer = `${prop} (${matchInputs[prop]}) 오답`;
-        // groupConclusion.push(conclusionAnswer);
+      } else {
         const obj = {};
         obj.question = prop;
         obj.answer = matchInputs[prop];
@@ -293,13 +289,25 @@ function Main(props) {
                 <div style={{ width : "80%", display : "flex", justifyContent : "space-around"}}>
                   <button
                     className="test-button"
-                    onClick={() => startTest('kor', vocalist, engVocalist)}
+                    onClick={() => {
+                      const question = [];
+                      vocaObj.forEach(obj => question.push(obj['voca']));
+                      const answer = [];
+                      vocaObj.forEach(obj => answer.push(obj['engvoca']));
+                      startTest('kor', question, answer);
+                    }}
                   >
                     한글시험
                   </button>
                   <button
                     className="test-button"
-                    onClick={() => startTest('eng', engVocalist, vocalist)}
+                    onClick={() => {
+                      const question = [];
+                      vocaObj.forEach(obj => question.push(obj['engvoca']));
+                      const answer = [];
+                      vocaObj.forEach(obj => answer.push(obj['voca']));
+                      startTest('eng', question, answer);
+                    }}
                   >
                     영어시험
                   </button>
@@ -404,7 +412,13 @@ function Main(props) {
                         <div className="finish-button-container">
                           <button 
                             className="finish-button"
-                            onClick={() => startTest('kor', vocalist, engVocalist)}
+                            onClick={() => {
+                              const question = [];
+                              vocaObj.forEach(obj => question.push(obj['voca']));
+                              const answer = [];
+                              vocaObj.forEach(obj => answer.push(obj['engvoca']));
+                              startTest('kor', question, answer);
+                            }}
                           >
                             재시험 보기
                           </button>
@@ -513,7 +527,13 @@ function Main(props) {
                         <div className="finish-button-container">
                           <button 
                             className="finish-button"
-                            onClick={() => startTest('Eng', engVocalist, vocalist)}
+                            onClick={() => {
+                              const question = [];
+                              vocaObj.forEach(obj => question.push(obj['engvoca']));
+                              const answer = [];
+                              vocaObj.forEach(obj => answer.push(obj['voca']));
+                              startTest('eng', question, answer);
+                            }}
                           >
                             재시험 보기
                           </button>

@@ -4,7 +4,7 @@ import { useAlert } from "react-alert";
 
 function Firstpage() {
 
-  let url = 'http://localhost:5000/user';
+  let url = 'http://3.34.140.114:5000/user';
 
   const alert = useAlert();
   

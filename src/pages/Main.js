@@ -8,7 +8,7 @@ function Main(props) {
 
   let currentVoca;
   let currentEngVoca;
-  let url = 'http://localhost:5000/voca';
+  let url = 'http://3.34.140.114:5000/voca';
 
   const { cookies } = props;
 
